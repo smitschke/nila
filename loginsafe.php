@@ -15,10 +15,14 @@ if (isset($_POST["login"])){
     $bulk->insert(['username' => 'admin', 'password' => '1234']); // Insert a new user document
     $manager->executeBulkWrite("$dbname.users", $bulk); // Execute the bulk write operation
 
+    // validate input
+    $username = validateInput($_POST["username"]);
+    $password = validateInput($_POST["password"]);
+
     // Create a new Query object
     $query = new MongoDB\Driver\Query([
-        "username" => $_POST["username"],
-        "password" => $_POST["password"]
+        "username" => $username,
+        "password" => $password
     ]);
 
     // Execute the query
@@ -33,6 +37,11 @@ if (isset($_POST["login"])){
         $errmsg = "login failed!";
     }
 }
+function validateInput($input)
+{
+    // allow only alphanumeric characters, underscore, and dash
+    return preg_replace("/[^a-zA-Z0-9_-]/", "", $input);
+}
 ?>
 
 <html>
@@ -41,8 +50,8 @@ if (isset($_POST["login"])){
 </head>
 
 <body style='text-align:center;font-family:Helvetica;'>
-    <p>Vulnerable Version</p>
-    <form method='POST' action='login.php'>
+    <p>Safe Version</p>
+    <form method='POST' action='loginsafe.php'>
         <p /> Username <input type='TEXT' id='username' name='username' value='' />
         <p /> Password <input type='TEXT' id='password' name='password' value='' />
         <p /><input type='SUBMIT' id='login' name='login' value='LOGIN' />
