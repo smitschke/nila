@@ -2,93 +2,164 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		
-		<link href="jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="gvt.css" media="screen" />
-		<script src="jquery-3.6.1.min.js"></script>
-			<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-			<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-	</head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="nila.css" media="screen" />
+    </head>
 
 	<body>
-		<div id="header">Welcome to NILA - der NoSQL-Injection Learning App</div>
-        <div style="padding:20px">
-        <ul>
-            <li><div><a href="#">Setup (noch nicht verlinkt)</a></div></li>
-            <li><div><a href="#">Notebooks (noch nicht verlinkt)</a></div></li>
-        </ul>
-		<h2>Warum das Ganze?</h2>
-		<div>
-            Etwas einleitendes. Warum wir uns für was entschieden haben und eben wofür das gut ist.<br />
-            Z.B. Jupyter Notebook, weil leicht nachzuvollziehen und (relativ) leicht selbst ein Server hochgezogen und entsprechend eingestellt/manipuliert werden kann. Kein User/Session-Problem etc.				
-		</div>
-        <h2>NoSQL vs. SQL-Injection</h2>
-		<div>	
-            Etwas Text über die Unterschiede. Jeweils ein Beispiel. 	
-		</div>
-        <h2>Wie können Angriffe durchgeführt werden?</h2>
-        <div>
-            Etwas auf JSON und die verschiedenen Eingabemöglichkeiten (ne, gt etc.) eingehen. Siehe Schritt 3. Ggf. auch etwas über die Art der Manipulation (Login, Liste mit Informationen etc.)<br />
-            5 Schritte erläutern:
-            <ol>
-                <li>find valid request</li>
-                <li>cause syntax error</li>
-                <li>modify query with operators</li>
-                <li>inject logic to get multiple records</li>
-                <li>inject JS or JSON</li>
-            </ol>
-        </div>
-        <h2>Die Überwachungsmöglichkeiten oder: Big Brother is watching you</h2>
-            Erwähnen, dass Eingabe direkt über Formular-Feld nicht funktioniert bzw. vielleicht funktioniert es wenn kein Type angegeben ist (muss noch geprüft werden).<br/>
-            Etwas zur Vulnerability (oder bei den Tools?)
-		<div>	
-            <ul>
-                <li>Burp Suite (dafür habe ich mich erstmal entschieden)</li>
-                <li>OWASP ZAP</li>
-                <li>...</li>
-            </ul>	
-            Mehr findet ihr in den u.A. in der Link-Liste (kommt heute Nachmittag noch)
-		</div>
-        <h2>Weitere (Python) Tools</h2>
-            <ul>
-                <li>NoSQL Map</li>
-                <li>NoSQL Exploitaition Framework</li>
-                <li>...</li>
-            </ul>	
-        </h2>
-        <h2>Und jetzt das ganze Sicher bitte!</h2>
-        <div>
-            Möglichkeiten NoSQL-Injections zu verhindern
-        </div>
-        <h2>TODO</h2>
-		<div>
-            <ul>
-                <li>Das hier alles mit richtigem Text füllen. Waren jetzt erstmal nur ein paar Gedanken und Ansätze.</li>
-                <li>Vielleicht alternativen zu Burp Suite finden (ohne Installation). Wäre zumindest schöner. Ansonsten nehme ich das mit in die Setup-Anweisungen auf.</li>
-                <li>Die Setup-Anweisungen schreiben.</li>
-                <li>Und natürlich das Notebook fehlerfrei bekommen.</li>
-                <li>Die 5 Seiten Doku schreiben.</li>
-                <li>Optional: sich (am Ende) vielleicht mit Binder beschäftigen und das Notebook direkt auf einer Seite hosten.</li>
-                <li>Optional: Andere Datenbank. Nicht nur Document, sondern Graph, Key-Value oder Wide-Column (lässt sich vermutlich relativ leicht realisieren)</li>
-                <li>Optional: Kleiner Wissenscheck.</li>
-            </ul>	
-		</div>
-        <h2>Was bisher geschah... oder: lessions learned</h2>
-        <div>
-            <ul>
-                <li>Django aufgesetzt um Notebooks zu verlinken. Verworfen weil Overhead.</li>
-                <li>Jupyter Notebook mit Mongo-DB aufgesetzt. Funktioniert anstandslos.</li>
-                <li>Jupyter mit nbextensions, ipwidgets, ipyvuetify und voila gefüttert und gestartet. Html bzw. Formular innerhalb des Notebooks lässt sich generieren, ABER: keine Überwachung in Burpsuite möglich, da Http nur im Hintergrund ausgeführt wird (Stichwort Tornado).</li>
-                <li>Jupyter im http-mode gestartet. API-Zugriff funktioniert, dafür aber kein direkter Notebook-Zugriff mehr.</li>
-                <li>Mercury (Django-Basis) statt Voila verwendet. Läuft nur sehr instabil. Kein Zugriff auf Methoden möglich.</li>
-                <li>Letzendlich auf Flask gestoßen. Damit lässt sich im Notebook ein Server starten. Zugriff auf DB auch möglich.</li>
-                <li>So, jetzt seid ihr so ziemlich am letzten Stand. Überwachung mit Burp Suite hier möglich. Nach ausschalten von CSRF Manipulation teilweise. Aber noch nicht so richtig. Mehr davon gibts aber später :)</li>
-            </ul>
-        </div>
-    </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" data-bs-toggle="collapse" href="#welcome" role="button" aria-expanded="true" aria-controls="welcome">
+                <img src="img/sql-injection(1).png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                <span>NILA |</span>
+              </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+          
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Downloads
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Python Playground</a></li>
+                      <li><a class="dropdown-item" href="#">PHP Playground</a></li>
+                    </ul>
+                  </li>
+                </ul>
+            </div>
+              </div>
+          
+          
+          </nav>
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-3">
+                    <h5>Soviel Wissen muss sein!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#threadAssessment" role="button" aria-expanded="false" aria-controls="threadAssessment">Die Bedrohungslage</a></div></li>
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#compareDB" role="button" aria-expanded="false" aria-controls="compareDB">NoSQL- und SQL-Datenbanken</a></div></li>
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#attackDescription" role="button" aria-expanded="false" aria-controls="attackDescription">NoSQL-Injections</a></div></li>
+                    </ul>
+                    <h5>It's your turn!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#setup" role="button" aria-expanded="false" aria-controls="setup">Playground aufsetzen</a></div></li>
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#securityScanner" role="button" aria-expanded="false" aria-controls="securityScanner">Sicherheitsscanner wählen</a></div></li>
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#transactAttack" role="button" aria-expanded="false" aria-controls="transactAttack">Angriff durchführen</a></div></li>
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#preventAttack" role="button" aria-expanded="false" aria-controls="preventAttack">Angriff verhindern</a></div></li>
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#linksAndTools" role="button" aria-expanded="false" aria-controls="linksAndTools">Hilfreiche Links und Tools</a></div></li>
+                    </ul>
+                    <h5>Alles klar?</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a data-bs-toggle="collapse" href="#knowledgeCheck" role="button" aria-expanded="false" aria-controls="knowledgeCheck">Wissenscheck</a></div></li>
+                    </ul>
+                </div>
+                <div id="mainContent" class="col-9">
+                    
+                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
+                        <h2>Willkommen bei NILA</h2>
+                        <div>
+                            Text...				
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="threadAssessment" data-bs-parent="#mainContent">
+                        <h2>Bedrohungslage</h2>
+                        <div>
+                           Text...	
+                        </div>
+                    </div>
+                    
+                    <div class="collapsing collapse" id="compareDB" data-bs-parent="#mainContent">
+                        <h2>NoSQL und SQL-Datenbanken</h2>
+                        <div>	
+                            Text...	
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="attackDescription" data-bs-parent="#mainContent">
+                        <h2>NoSQL-Injections</h2>
+                        <div>	
+                            Text...	
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="setup" data-bs-parent="#mainContent">
+                        <h2>Playground aufsetzen</h2>
+                        <div>
+                            Text...
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="securityScanner" data-bs-parent="#mainContent">
+                        <h2>Sicherheitsscanner wählen</h2>
+                        <div>	
+                            Text...
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="transactAttack" data-bs-parent="#mainContent">
+                        <h2>Angriff durchführen</h2>
+                        <div>
+                            Text...
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="preventAttack" data-bs-parent="#mainContent">
+                        <h2>Angriff verhindern</h2>
+                        <div>
+                            Text...
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="linksAndTools" data-bs-parent="#mainContent">
+                        <h2>Links und Tools</h2>
+                        <div>
+                            Text...
+                        </div>
+                    </div>
+
+                    <div class="collapsing collapse" id="knowledgeCheck" data-bs-parent="#mainContent">
+                        <h2>Wissenscheck</h2>
+                        <div>
+                            Text...
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>     
         
-		<!--<div id="footer">
-			<a id="source_link" href="#">Quellen</a>
-		</div>-->
+        <!-- Modal -->
+        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+		<div id="footer">
+			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
+            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
+		</div>
 	</body>
 </html>
