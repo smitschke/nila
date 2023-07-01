@@ -50,8 +50,8 @@ function validateInput($input)
 </head>
 
 <body style='text-align:center;font-family:Helvetica;'>
-    <p>Safe Version</p>
-    <form method='POST' action='loginsafe.php'>
+    <p>Version with Search and Replace function</p>
+    <form method='POST' action='loginSearchAndReplace.php'>
         <p /> Username <input type='TEXT' id='username' name='username' value='' />
         <p /> Password <input type='TEXT' id='password' name='password' value='' />
         <p /><input type='SUBMIT' id='login' name='login' value='LOGIN' />
