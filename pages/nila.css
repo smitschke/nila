@@ -1,0 +1,81 @@
+body {
+    background-color: #FCFFFD;
+}
+
+.navbar {
+    padding: 5px 50px 0;
+    background-color: #343B4A !important;
+    border-bottom: 2px solid #66DEFF;
+}
+
+.navbar a {
+    color: #E3F1FF !important; 
+}
+
+.navbar a:active, .navbar a:hover, .list-group a:hover {
+    color: #66DEFF !important;
+}
+
+.navbar-brand span {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    color: #E3F1FF;
+    padding-top: 2px;
+}
+
+.dropdown-menu {
+    background-color: #343B4A;
+}
+
+a {
+    color: #4EB1FC; 
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/*.collapsing {
+    display: none;
+}*/
+
+a[aria-expanded="true"], #active{
+    pointer-events: none;
+    cursor: default;
+    color: #343B4A !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.list-group {
+    padding-bottom: 20px;
+}
+
+#footer {
+    background-color: #343B4A;
+    color: #E3EAFC;
+    font-size: 12px;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+#footer > div {
+   margin: 10px;
+   float: left;
+}
+
+#footer > a {
+    margin: 10px;
+    float: right;
+}
+
+h2 {
+    color: #495586;
+}

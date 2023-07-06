@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="nila.css" media="screen" />
+    </head>
+	<body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="nila.html">
+                    <img src="img/sql-injection.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <span>NILA |</span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="nila.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://git.mylab.th-luebeck.de/tobias.koehn/nosqlinjection">
+                            Downloads
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-3">
+                    <h5>Soviel Wissen muss sein!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
+                        <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
+                        <li class="list-group-item"><div><a href="attackDescription.html">NoSQL-Injections</a></div></li>
+                        <li class="list-group-item"><div><a href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
+                    </ul>
+                    <h5>It's your turn!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a id="active" href="setup.html">Playground aufsetzen</a></div></li>
+                        <li class="list-group-item"><div><a href="securityScanner.html">Sicherheitsscanner wählen</a></div></li>
+                        <li class="list-group-item"><div><a href="transactAttack.html">Angriff durchführen</a></div></li>
+                        <li class="list-group-item"><div><a href="preventAttack.html">Angriff verhindern</a></div></li>
+                        <li class="list-group-item"><div><a href="linksAndTools.html">Hilfreiche Links und Tools</a></div></li>
+                    </ul>
+                    <h5>Alles klar?</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="knowledgeCheck.html">Wissenscheck</a></div></li>
+                    </ul>
+                </div>
+                <div id="mainContent" class="col-9">
+                    
+                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
+                        <h2>Playground aufsetzen</h2>
+                        <div>
+                            <p>Für die Installation der PHP-Anwendung werden mehrere Tools benötigt, welche im Folgenden erläutert werden:</p>
+                            <ol>
+                                <li>
+                                    Für unsere Anwendung haben wir den PHP-Server über Xampp aufgesetzt. Der PHP-Server benötigt dazu noch einen MongoDB-Treiber, weshalb darauf geachtet werden muss, dass die Versionen
+                                     miteinander kompatibel sind. Außerdem muss MongoDB installiert werden.
+                                </li>
+                                <li>
+                                    Der MongoDB-Download ist unter folgendem Link verfügbar: <a href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a>  (je nach Bedarf
+                                    kann außerdem zusätzlich die GUI MongoDB Compass zur Nutzung mit der Datenbank installiert werden)</li>
+                                <li>
+                                    Der Xampp-Download ist unter folgenden Link zu finden: <a href="https://www.apachefriends.org/de/index.html">https://www.apachefriends.org/de/index.html</a>
+                                </li>
+                                <li>
+                                    Der Treiber für MongoDB ist unter folgenden link zu finden: <a href="https://pecl.php.net/package/mongodb">https://pecl.php.net/package/mongodb</a> (dabei ist darauf zu achten, dass
+                                    die DLL-Version heruntergeladen werden muss)
+                                </li>
+                                <li>
+                                    Zum jetzigen Zeitpunkt (28.06.2023) ist die aktuelle DLL-Version für PHP 8.1 verfügbar, weshalb auch dazu passend die Xampp Version 8.1 installiert werden muss.
+                                </li>
+                                <li>
+                                    Nach der Installation von Xampp, muss die DLL (php_mongodb.dll) des MongoDB-Treibers in den Ordner xampp/php/ext verschoben werden. Außerdem muss im Ordner xampp/php die Datei 
+                                    php.ini angepasst werden. Dafür muss die Zeile „extension=php_mongodb.dll“ hinzugefügt werden.
+                                </li>
+                                <li>
+                                    Für Hilfe zur Installation kann folgendes Video empfohlen werden: <a href="https://www.youtube.com/watch?v=WFrZB1Zr6lo">https://www.youtube.com/watch?v=WFrZB1Zr6lo</a>
+                                </li>
+                                <li>
+                                    Um Anfragen an die Datenbank zu verändern, wird das Tool BurpSuite benötigt, welches unter folgenden Link gefunden wird: <a href="https://portswigger.net/burp/communitydownload">
+                                    https://portswigger.net/burp/communitydownload</a>
+                                </li>
+                                <li>
+                                    Die Testwebsite für den PHP-Server wird im Ordner xampp/htdocs abgelegt.
+                                </li>
+                                <li>
+                                    Mit dem Xampp Control Panel wird dann der Apache Server gestartet. Über BurpSuite wird dann unter dem Reiter Proxy mit Intercept On der Browser geöffnet. Danach wird die Adresse 
+                                    der Website im Browser eingegeben: <a href="http://localhost/nila/login.php">http://localhost/nila/login.php</a>
+                                </li>
+                                <li>
+                                    Extra: Für den Fall, dass die PHP-Version geändert werden soll, findet sich eine Anleitung unter folgendem Link: <a href="https://julianlang.net/xampp-mehrere-php-versionen-verwenden/">
+                                    https://julianlang.net/xampp-mehrere-php-versionen-verwenden/</a>"
+                                </li>
+                            </ol>		
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        
+        <!-- Modal -->
+        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+		<div id="footer">
+			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
+            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
+		</div>
+	</body>
+</html>

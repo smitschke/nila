@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="nila.css" media="screen" />
+    </head>
+
+	<body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="nila.html">
+                    <img src="img/sql-injection.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <span>NILA |</span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="nila.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://git.mylab.th-luebeck.de/tobias.koehn/nosqlinjection">
+                            Downloads
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-3">
+                    <h5>Soviel Wissen muss sein!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
+                        <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
+                        <li class="list-group-item"><div><a id="active" href="attackDescription.html">NoSQL-Injections</a></div></li>
+                        <li class="list-group-item"><div><a href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
+                    </ul>
+                    <h5>It's your turn!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="setup.html">Playground aufsetzen</a></div></li>
+                        <li class="list-group-item"><div><a href="securityScanner.html">Sicherheitsscanner wählen</a></div></li>
+                        <li class="list-group-item"><div><a href="transactAttack.html">Angriff durchführen</a></div></li>
+                        <li class="list-group-item"><div><a href="preventAttack.html">Angriff verhindern</a></div></li>
+                        <li class="list-group-item"><div><a href="linksAndTools.html">Hilfreiche Links und Tools</a></div></li>
+                    </ul>
+                    <h5>Alles klar?</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="knowledgeCheck.html">Wissenscheck</a></div></li>
+                    </ul>
+                </div>
+                <div id="mainContent" class="col-9">
+                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
+                        <h2>NoSQL-Injections</h2>
+                        <div>
+                            <p>
+                               Bei Injektionsangriffen fügt ein Angreifer bösartigen Code in die Anweisungen ein, die von der Anwendung an die Datenbankschicht weitergegeben werden. Dies kann beispielsweise über 
+                               Suchfelder, Formularfelder oder API-Eingaben erfolgen. Wenn die Anwendung solche Eingaben nicht bereinigt, kommt es zur Akzeptanz und Ausführung des Codes. Der Angreifer hat dann fast 
+                               unbegrenzte Kontrolle über die zu Grunde liegende Datenbank: Er kann Daten verändern, einfügen oder löschen und hat Zugriff auf nichtautorisierte Daten [2]. Je nach Datenbank wird 
+                               hierbei zwischen SQL- und NoSQL-Injektionsangriffen unterschieden. Die NoSQL-Injektion ist ein spezifischer Typ von Injektionsangriff, der auf NoSQL-Datenbanken ausgeführt werden kann.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>     
+        
+        <!-- Modal -->
+        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+		<div id="footer">
+			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
+            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
+		</div>
+	</body>
+</html>

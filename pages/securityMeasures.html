@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="nila.css" media="screen" />
+    </head>
+
+	<body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="nila.html">
+                    <img src="img/sql-injection.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <span>NILA |</span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="nila.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://git.mylab.th-luebeck.de/tobias.koehn/nosqlinjection">
+                            Downloads
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-lg-center">
+                <div class="col-3">
+                    <h5>Soviel Wissen muss sein!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
+                        <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
+                        <li class="list-group-item"><div><a href="attackDescription.html">NoSQL-Injections</a></div></li>
+                        <li class="list-group-item"><div><a id="active" href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
+                    </ul>
+                    <h5>It's your turn!</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="setup.html">Playground aufsetzen</a></div></li>
+                        <li class="list-group-item"><div><a href="securityScanner.html">Sicherheitsscanner wählen</a></div></li>
+                        <li class="list-group-item"><div><a href="transactAttack.html">Angriff durchführen</a></div></li>
+                        <li class="list-group-item"><div><a href="preventAttack.html">Angriff verhindern</a></div></li>
+                        <li class="list-group-item"><div><a href="linksAndTools.html">Hilfreiche Links und Tools</a></div></li>
+                    </ul>
+                    <h5>Alles klar?</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><div><a href="knowledgeCheck.html">Wissenscheck</a></div></li>
+                    </ul>
+                </div>
+                <div id="mainContent" class="col-9">
+                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
+                        <h2>NoSQL-Injection Angriffe verhindern</h2>
+                        <div>
+                            <p>In diesem Abschnitt werden verschiedene Methoden erläutert, wie NoSQL-Injection Angriffe verhindert werden können. Dabei werden verschiedene Methoden erläutert und spezifische Beispiele
+                               für eine MongoDB Datenbank in PHP-Umgebung gegeben.</p>
+                               <h4>Methoden:</h4>
+                            <ol>
+                                <li><b>Search and Replace:</b> Durch das Überprüfen der Benutzereingabe kann verhindert werden, dass Datenbankoperatoren (wie z.B. $where) ausgeführt werden. Dafür kann die 
+                                    Benutzereingabe auf nicht gewünschte Zeichen wie „$“ oder andere Sonderzeichen geprüft werden, um diese dann aus der Eingabe zu entfernen. 
+                                    In einer PHP-Umgebung wäre dies mit der Funktion preg_replace
+                                    möglich [1].
+                                </li>
+                                <li><b>Type Casting:</b> Beim Type Casting wird die Eingabe des Benutzers in den gewünschten Datentyp umgewandelt. Bei der Eingabe von LogIn-Daten wäre dies bspw. eine Umwandlung der 
+                                    Benutzereingabe in den Datentyp String. In einer PHP-Umgebung wäre dies mit der Funktion type-juggling möglich [2][6].
+                                </li>
+                                <li><b>Prepared Statements:</b> Benutzereingaben sollten getrennt von der Datenbankabfrage verwendet werden, um zu verhindern das die Benutzereingabe von der Datenbank als Teil der 
+                                    Abfrage interpretiert wird. Mögliche Datenbankoperatoren aus der Benutzereingabe werden so nicht in der Datenbankabfrage ausgeführt [3].
+                                </li>
+                                <li><b>Least-Privilige-Prinzip:</b> Benutzeraccounts sollten die geringstmöglichen Zugriffsrechte zur Datenbank haben. Durch eine sorgfältige Verteilung von Zugriffsrechten, kann bei 
+                                    einem erfolgreichen Angriff der mögliche Schaden reduziert werden, da Angreifer durch die niedrige Zugriffsebene auf weniger Daten Zugriff haben [3][4]. 
+                                </li>
+                                <li><b>Whitelist/Blacklist:</b> Ähnlich zur Search and Replace Methode kann auch eine Whitelist/Blacklist mit zulässigen/unzulässigen Zeichen erstellt werden, um Angriffe zu verhindern. 
+                                    Bei einer Whitelist werden die Benutzereingaben auf zulässige Zeichen überprüft. Nur Eingaben mit zulässigen Zeichen werden erkannt und im Anschluss ausgeführt. Das Prinzip der 
+                                    Blacklist funktioniert analog dazu umgekehrt.
+                                </li>
+                                <li><b>Aktuelle Software-Versionen:</b> Beim Implementieren einer Anwendung sollte darauf geachtet werden die neuesten stabilen Versionen der verwendeten Architektur zu verwenden, um 
+                                    interne Sicherheitslücken in der Architektur zu vermeiden.
+                                </li>
+                                <li><b>Pentesting/Security Audits:</b> Eine weitere Möglichkeit ist das Nutzen von Security Audits. Diese Tools überprüfen die Einstellungen der Datenbank auf bekannte Fehler und geben
+                                     Empfehlungen wie man seine Datenbank sicherer gestalten kann. Außerdem können einige dieser Tools auch Pentesting durchführen, um Schwachstellen in der Architektur zu finden. Für 
+                                     MongoDB wäre das bspw. MongoAudit [10].
+                                </li>
+                                <li><b>Libraries/Packages:</b> Es gibt auch bereits Libaries oder Packages, die mehrere der vorher genannten Methoden umsetzen. Für MongoDB wären das bspw. mongo-sanitize oder mongoose,
+                                     welche die Benutzereingaben überprüfen und Type Casting oder Search and Replace beinhalten [7][8][9][14].
+                                </li>
+                                <li><b>Secure Deployment:</b> Nicht jeder sollte direkten Zugriff auf die Datenbank haben. Nutzer sollten bspw. keinen direkten Zugriff auf die Datenbank haben, sondern nur über den 
+                                    Anwendungsserver. Beim Nutzen von APIs für den Zugriff auf Datenbanken sollte drauf geachtet werden, dass diese ausreichend geschützt sind. Bspw. sollte Input im JSON-Format nur als 
+                                    Content Type akzeptiert werden um Angriffe über die API zu verhindern. Gerade beim Nutzen von Drittentwickler-APIs sollte beachtet werden, dass diese APIs ausreichen gesichert sind 
+                                    [11].
+                                </li>
+                                <li><b>Monitoring/Attack Detection:</b> Nach dem Deployment der Anwendung kann man weiterhin die Aktivitäten beobachten, um Angriffe auf die Datenbank zu erkennen. Eine Möglichkeit sind
+                                     Web Application Firewalls (WAF), welche den Datenfluss über HTTP-Anfragen beobachten und Angriffe erkennen können. Eine weitere Möglichkeit ist die Aktivität der Datenbank zu 
+                                     beobachten. Dafür gibt es direkte Möglichkeiten wie den MongoDB Cloud Manager für MongoDB [12]. Außerdem gibt es für viele weitere Monitoring Angebote von Drittanbietern seine 
+                                     Datenbank zu beobachten [11][13]. Durch das beobachten der Anfragen auf die Datenbank können dann ungewöhnliche oder bösartige Anfragen erkannt werden.
+                                </li>
+                            </ol>	
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>     
+        
+        <!-- Modal -->
+        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+		<div id="footer">
+			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
+            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
+		</div>
+	</body>
+</html>
