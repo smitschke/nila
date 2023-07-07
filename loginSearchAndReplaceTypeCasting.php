@@ -40,7 +40,7 @@ if (isset($_POST["login"])){
 function validateInput($input)
 {
     // allow only alphanumeric characters, underscore, and dash
-    return preg_replace("/[^a-zA-Z0-9_-]/", "", $input);
+    return (string) preg_replace("/[^a-zA-Z0-9_-]/", "", $input);
 }
 ?>
 
