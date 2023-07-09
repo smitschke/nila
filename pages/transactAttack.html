@@ -55,7 +55,8 @@
                         <h2>Angriff durchführen</h2>
                         <div>
                             <p>Wurde nun der Playground erfolgreich aufgesetzt und Burp Suite installiert, können nun die ersten Angriffe auf die Website durchgeführt werden.</p>
-                            <p>Dazu muss zunächst der Apache-Server über das Xampp-Control-Panel gestartet werden. Die Website ist anschließend unter <a href="http://localhost/nila/login.php">http://localhost/nila/login.php</a> erreichbar und sollte folgendermaßen aussehen:</p>
+                            <p>Dazu muss zunächst der Apache-Server über das Xampp-Control-Panel gestartet werden. Die Website ist anschließend unter 
+                            <a href="http://localhost/nila/login.php">http://localhost/nila/login.php</a> erreichbar und sollte folgendermaßen aussehen:</p>
                             <img src="img/Screenshot_Loginpage.png" alt="Loginpage" class="d-inline-block align-text-top">
                             <p><b>Hinweis:</b> Erfolgreich eingeloggt werden kann sich mit den Daten<br />
                             Username: admin<br />
@@ -66,7 +67,8 @@
                             <img src="img/Screenshot_BurpSuite1.png" alt="Open Browser in Burp Suite" class="d-inline-block align-text-top">    
                             <p>Anschließend muss die Website <a href="http://localhost/nila/login.php">http://localhost/nila/login.php</a> in diesem Browserfenster geöffnet werden.<br />
                             Die Seite wird jedoch nicht sofort angezeigt. Dazu muss zuerst in Burp Suite einmal auf "Forward" geklickt werden.</p>
-                            <p>Gehen wir nun davon aus, dass ein potentieller Angreifer zwar weiß, dass es einen Admin-Account gibt, jedoch das entsprechende Passwort dazu nicht kennt, muss er nun zunächst eine falsche Dateneingabe durchführen. Beispielsweise:<br />
+                            <p>Gehen wir nun davon aus, dass ein potentieller Angreifer zwar weiß, dass es einen Admin-Account gibt, jedoch das entsprechende Passwort dazu nicht kennt, muss er nun zunächst eine 
+                            falsche Dateneingabe durchführen. Beispielsweise:<br />
                             Username: admin<br />
                             Password: admin
                             </p>
@@ -76,9 +78,11 @@
                             <p class="code">username=admin&password=admin&login=LOGIN</p>
                             <p>in</p>
                             <p class="code">username=admin&password[$ne]=admin&login=LOGIN</p> 
-                            <p>und klickt dann zweimal auf "Forward", wird der Angreifer erfolgreich als Admin erkannt und die Logout.php aufgerufen, also die Seite, die eigentlich nur angezeigt werden sollte, nachdem die korrekten Daten eingegeben wurden. <br />
+                            <p>und klickt dann zweimal auf "Forward", wird der Angreifer erfolgreich als Admin erkannt und die Logout.php aufgerufen, also die Seite, die eigentlich nur angezeigt werden sollte, 
+                            nachdem die korrekten Daten eingegeben wurden. <br />
                             Das das Funktioniert, liegt in diesem Fall an der Prüfung auf Ungleichheit (<b>n</b>ot <b>e</b>qual).</p>
-                            <p>Dieser Angriff war nur ein Beispiel, wie Angriffe durchgeführt werden können. Tatsächlich können auf diese Art und Weise verschiedenste Attacken durchgeführt werden, also nicht nur das Einloggen unter einem anderen Account sondern beispielsweise auch die Manipulation von Daten. So können über den "Repeater" in Burp Suite erneut Anfragen mit falschen Daten gesendet und gespeichert werden.<br />
+                            <p>Dieser Angriff war nur ein Beispiel, wie Angriffe durchgeführt werden können. Tatsächlich können auf diese Art und Weise verschiedenste Attacken durchgeführt werden, also nicht nur das 
+                            Einloggen unter einem anderen Account sondern beispielsweise auch die Manipulation von Daten. So können über den "Repeater" in Burp Suite erneut Anfragen mit falschen Daten gesendet und gespeichert werden.<br />
                             Ein Angriff dieser Art wurde jedoch in dieser Anwendung nicht implementiert.</p>
                         </div>
                     </div> 
@@ -86,28 +90,27 @@
             </div>
         </div>     
         
-        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div id="footer">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#authors">Autoren</a>
+		</div>
+
+        <div class="modal fade" id="authors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autoren</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Dominik Bottin<br />
+                        Robin Hegenberg<br />
+                        Susanne Dittrich<br />
+                        Tobias Köhn
+                    </div>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
             </div>
         </div>
-        
-		<div id="footer">
-			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
-            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
-		</div>
 	</body>
 </html>
