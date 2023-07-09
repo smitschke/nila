@@ -54,14 +54,38 @@
                     <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
                         <h2>Angriff durchführen</h2>
                         <div>
-                            ...
+                            <p>Wurde nun der Playground erfolgreich aufgesetzt und Burp Suite installiert, können nun die ersten Angriffe auf die Website durchgeführt werden.</p>
+                            <p>Dazu muss zunächst der Apache-Server über das Xampp-Control-Panel gestartet werden. Die Website ist anschließend unter <a href="http://localhost/nila/login.php">http://localhost/nila/login.php</a> erreichbar und sollte folgendermaßen aussehen:</p>
+                            <img src="img/Screenshot_Loginpage.png" alt="Loginpage" class="d-inline-block align-text-top">
+                            <p><b>Hinweis:</b> Erfolgreich eingeloggt werden kann sich mit den Daten<br />
+                            Username: admin<br />
+                            Password: 1234
+                            </p>
+                            <p>Im Normalfall weiß ein Angreifer diese Daten jedoch nicht, kann sich aber trotzdem leicht als Admin ausgeben uns sich unter diesem Account einloggen.</p>
+                            <p>Dazu muss zunächst Burp Suite gestartet und ein extra Browserfenster unter "Proxy > Open browser" geöffnet werden und "Intercept is on" aktiviert werden.</p>
+                            <img src="img/Screenshot_BurpSuite1.png" alt="Open Browser in Burp Suite" class="d-inline-block align-text-top">    
+                            <p>Anschließend muss die Website <a href="http://localhost/nila/login.php">http://localhost/nila/login.php</a> in diesem Browserfenster geöffnet werden.<br />
+                            Die Seite wird jedoch nicht sofort angezeigt. Dazu muss zuerst in Burp Suite einmal auf "Forward" geklickt werden.</p>
+                            <p>Gehen wir nun davon aus, dass ein potentieller Angreifer zwar weiß, dass es einen Admin-Account gibt, jedoch das entsprechende Passwort dazu nicht kennt, muss er nun zunächst eine falsche Dateneingabe durchführen. Beispielsweise:<br />
+                            Username: admin<br />
+                            Password: admin
+                            </p>
+                            <p>Angezeigt wird nun in Burp Suite folgendes:</p>
+                            <img src="img/Screenshot_BurpSuite2.png" alt="Anzeigen des Requests" class="d-inline-block align-text-top">
+                            <p>Ändert er nun die Zeile</p>
+                            <p class="code">username=admin&password=admin&login=LOGIN</p>
+                            <p>in</p>
+                            <p class="code">username=admin&password[$ne]=admin&login=LOGIN</p> 
+                            <p>und klickt dann zweimal auf "Forward", wird der Angreifer erfolgreich als Admin erkannt und die Logout.php aufgerufen, also die Seite, die eigentlich nur angezeigt werden sollte, nachdem die korrekten Daten eingegeben wurden. <br />
+                            Das das Funktioniert, liegt in diesem Fall an der Prüfung auf Ungleichheit (<b>n</b>ot <b>e</b>qual).</p>
+                            <p>Dieser Angriff war nur ein Beispiel, wie Angriffe durchgeführt werden können. Tatsächlich können auf diese Art und Weise verschiedenste Attacken durchgeführt werden, also nicht nur das Einloggen unter einem anderen Account sondern beispielsweise auch die Manipulation von Daten. So können über den "Repeater" in Burp Suite erneut Anfragen mit falschen Daten gesendet und gespeichert werden.<br />
+                            Ein Angriff dieser Art wurde jedoch in dieser Anwendung nicht implementiert.</p>
                         </div>
                     </div> 
                 </div>
             </div>
         </div>     
         
-        <!-- Modal -->
         <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
