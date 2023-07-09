@@ -10,8 +10,9 @@
 - Die Lernumgebung ist außerdem über diesem [Link](https://smitschke.github.io/nosql/nila.html) abrufbar. 
 
 ### Python Playground
-- Die Python Codebeispiele liegen im Ordner **pythonPlayground** ab
->In der Lernumgebung sind diese nicht aktiv genutzt, da dort die PHP Codebeispiele benutzt werden
+- Die Python Codebeispiele liegen im Ordner **pythonPlayground** ab.
+- Diese sind nicht vollständig wie die PHP Codebeispiele, können aber trotzdem zum Verständnis oder zum Testen genutzt werden.
+>In der Lernumgebung werden diese nicht aktiv erwähnt, da dort die PHP Codebeispiele benutzt werden
 
 ## Authoren
 Dominik Bottin, Susanne Dittrich, Robin Hegenberg & Tobias Köhn 
