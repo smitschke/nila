@@ -17,6 +17,6 @@
 - Diese sind nicht vollständig wie die PHP Codebeispiele, können aber trotzdem zum Verständnis oder zum Testen genutzt werden.
 >In der Lernumgebung werden diese nicht aktiv erwähnt, da dort die PHP Codebeispiele benutzt werden
 
-## Authoren
+## Autoren
 Dominik Bottin, Susanne Dittrich, Robin Hegenberg & Tobias Köhn 
 >im Rahmen des Masterstudiengangs Medieninformatik online.
