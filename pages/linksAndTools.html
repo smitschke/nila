@@ -32,7 +32,6 @@
                 <div class="col-3">
                     <h5>Soviel Wissen muss sein!</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
                         <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
                         <li class="list-group-item"><div><a href="attackDescription.html">NoSQL-Injections</a></div></li>
                         <li class="list-group-item"><div><a href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
@@ -64,8 +63,7 @@
                                 <li>MongoODM für PHP-Download: <a href="https://github.com/sokil/php-mongo">https://github.com/sokil/php-mongo</a></li>
                                 <li>Mongo-sanitize Download: <a href="https://www.npmjs.com/package/mongo-sanitize">https://www.npmjs.com/package/mongo-sanitize</a></li>
                                 <li>Mongo-sanitize für PHP Download: <a href="https://github.com/Aldin-SXR/mongo-sanitize">https://github.com/Aldin-SXR/mongo-sanitize</a></li>
-                                <li>Link für die Pentesting/Security Audit Version: ...</li>
-                                <li>Mongoaudit: <a href="https://github.com/stampery/mongoaudit">https://github.com/stampery/mongoaudit</a></li>
+                                <li>Link für die Pentesting/Security Audit Version (Mongoaudit): <a href="https://github.com/stampery/mongoaudit">https://github.com/stampery/mongoaudit</a></li>
                                 <li>Hilfreiche Ressourcen für alle möglichen Architekturen mit MongoDB: <a href="https://www.mongodb.com/docs/drivers/php-libraries/">https://www.mongodb.com/docs/drivers/php-libraries/</a></li>
                             </ul>
                         </div>
@@ -74,29 +72,28 @@
             </div>
         </div>     
         
-        <!-- Modal -->
-        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+		<div id="footer">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#authors">Autoren</a>
+		</div>
+
+        <div class="modal fade" id="authors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autoren</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Dominik Bottin<br />
+                        Robin Hegenberg<br />
+                        Susanne Dittrich<br />
+                        Tobias Köhn
+                    </div>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
             </div>
         </div>
-        
-		<div id="footer">
-			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
-            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
-		</div>
 	</body>
 </html>
+

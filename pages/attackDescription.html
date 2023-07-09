@@ -28,12 +28,12 @@
                 </div>
             </div>
         </nav>
+
         <div class="container">
             <div class="row justify-content-lg-center">
                 <div class="col-3">
                     <h5>Soviel Wissen muss sein!</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
                         <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
                         <li class="list-group-item"><div><a id="active" href="attackDescription.html">NoSQL-Injections</a></div></li>
                         <li class="list-group-item"><div><a href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
@@ -51,45 +51,231 @@
                         <li class="list-group-item"><div><a href="knowledgeCheck.html">Wissenscheck</a></div></li>
                     </ul>
                 </div>
+
                 <div id="mainContent" class="col-9">
-                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
-                        <h2>NoSQL-Injections</h2>
-                        <div>
-                            <p>
-                               Bei Injektionsangriffen fügt ein Angreifer bösartigen Code in die Anweisungen ein, die von der Anwendung an die Datenbankschicht weitergegeben werden. Dies kann beispielsweise über 
-                               Suchfelder, Formularfelder oder API-Eingaben erfolgen. Wenn die Anwendung solche Eingaben nicht bereinigt, kommt es zur Akzeptanz und Ausführung des Codes. Der Angreifer hat dann fast 
-                               unbegrenzte Kontrolle über die zu Grunde liegende Datenbank: Er kann Daten verändern, einfügen oder löschen und hat Zugriff auf nichtautorisierte Daten [2]. Je nach Datenbank wird 
-                               hierbei zwischen SQL- und NoSQL-Injektionsangriffen unterschieden. Die NoSQL-Injektion ist ein spezifischer Typ von Injektionsangriff, der auf NoSQL-Datenbanken ausgeführt werden kann.
-                            </p>
-                        </div>
+                    <h2>NoSQL-Injections</h2>
+                    <div>
+                        <p>
+                            Bei Injektionsangriffen fügt ein Angreifer bösartigen Code in die Anweisungen ein, die von der Anwendung an die Datenbankschicht weitergegeben werden. Dies kann beispielsweise über 
+                            Suchfelder, Formularfelder oder API-Eingaben erfolgen. Wenn die Anwendung solche Eingaben nicht bereinigt, kommt es zur Akzeptanz und Ausführung des Codes. Der Angreifer hat dann fast 
+                            unbegrenzte Kontrolle über die zu Grunde liegende Datenbank: Er kann Daten verändern, einfügen oder löschen und hat Zugriff auf nichtautorisierte Daten [2]. Je nach Datenbank wird hierbei 
+                            zwischen SQL- und NoSQL-Injectionangriffen unterschieden. Die NoSQL-Injection ist ein spezifischer Typ von Injektionsangriff, der auf NoSQL-Datenbanken ausgeführt werden kann. 
+                        </p>
+                        <img src="img/architektur.png" alt="Architektur einer NoSQL-Webanwendung">
+                        <p>
+                            Zum besseren Verständnis der NoSQL-Angriffsarten zeigt Abbildung 3 die typische die typische Architektur einer Webanwendung mit NoSQL-Datenbank. Eine solche NoSQL-Datenbank könnte 
+                            beispielweise mit MongoDB realisiert werden. MongoDB ist das am weitesten verbreitete NoSQL-Datenbankmanagementsystem (Stand: Oktober 2019) und wird von Großunternehmen wie eBay, 
+                            Foursquare und LinkedIn angewendet. Die NoSQL-Datenbanken sind in MongoDB dokumentenorientiert. Dabei werden JSON-ähnliche Dokumente verwendet [11]. JSON steht für JavaScript Object 
+                            Notation und ist ein leichtgewichtiges Datenformat, das für den Datenaustausch zwischen Anwendungen verwendet wird.
+                        </p>
+                        <p>
+                            Der Zugriff auf die Datenbank erfolgt über einen Client/Protokoll-Wrapper. Ein Client/Protokoll-Wrapper ist ein Programm, das eine Schnittstelle zwischen einer Anwendung und einem 
+                            Netzwerkprotokoll bereitstellt, indem es die Kommunikation zwischen den beiden vereinfacht. In Bezug auf Datenbanken kann ein Client/Protokoll-Wrapper den Zugriff auf die Datenbank 
+                            vereinfachen, indem er eine Schnittstelle zwischen der Anwendung und dem Datenbankprotokoll bereitstellt [2]. 
+                        </p>
+                        <p>
+                            In dieser Architektur kann PHP als Backend-Sprache verwendet werden, um Anfragen an die NoSQL-Datenbank zu senden und die Ergebnisse zu verarbeiten. PHP bietet eine native Unterstützung 
+                            für die Arbeit mit JSON-Daten und ist daher leicht mit MongoDB kompatibel. Abbildung 4 zeigt die resultierende Architektur.
+                        </p>
+                        <img src="img/architektur2.png" alt="Architektur einer NoSQL-Anwendung mit MongoDB-Datenbanksystem und PHP-Client">
+                        <p>
+                            Einem Angreifer stehen je nach Art der Programmierung nun möglicherweise die folgenden NoSQL-Injectionangriffsarten zur Verfügung:
+                        </p>
+                        <p>
+                            <b>PHP-Tautologien mit Array-Injectionsangriffen</b><br />
+                            Bei PHP-Tautologie-Angriffen erzeugen Angreifer durch ihre Code-Injection Ausdrücke, die immer wahr sind (Tautologien), um Authentifizierungs- oder Zugriffsmechanismen zu umgehen. Dies wird
+                            mit dem folgenden Array-Injectionangriff-Beispiel einer Login-Seite aufgezeigt:
+                        </p>
+                        <p>
+                            Bei der Login-Seite kann ein Nutzer einen Benutzernamen und ein Passwort eingeben. PHP kodiert diese Arrays dann nativ in JSON und sendet diese vom Browser des Benutzers über HTTP POST. 
+                            Ein typischen POST-URL-kodiertes Payload könnte dann folgendermaßen aussehen: 
+                        </p>
+                        <p class="code">
+                            username=admin&password=1234
+                        </p>
+                        <p>
+                            Diese Daten werden anschließend mit den Dokumenten aus der dahinterliegenden MongoDB-Datenbank verglichen. Es wird also abgefragt, ob ein entsprechender Nutzer mit einem korrespondierenden
+                            Passwort in der Datenbank hinterlegt ist. Dies passiert hier mittels des folgenden Befehls:
+                        </p>
+                        <p class="code">
+                            db->logins->find(array(“username”=>$_POST[“username”], “password”=>$_POST[“password”])); 
+                        </p>
+                        <p>
+                            PHP verfügt jedoch über einen eingebauten Mechanismus für assoziative Arrays, der es Angreifern ermöglicht, die folgende bösartige Injection unter Verwendung des [$ne]-Operators zu senden: 
+                        </p>
+                        <p class="code">
+                            username=admin&password[$ne]=
+                        </p>
+                        <p>
+                            PHP übersetzt diese Eingabe in:
+                        </p>
+                        <p class="code">
+                            array("username" => "admin", "password" => array("$ne" => ""));
+                        </p>
+                        <p>
+                            Und dies resultiert in der folgenden MongoDB-Abfrage: 
+                        </p>
+                        <p class="code">
+                            db.logins.find({ username: "admin", password: { $ne: "" }})
+                        </p>
+                        <p>
+                            Die Passwort-Suche wird hierbei also umgangen, indem jeder Eintrag gefunden wird, der den entsprechenden Username aufweist und ein beliebiges, nicht-leeres Passwort hinterlegt hat. Um dies
+                            zu verhindern könnten beispielsweise in der find-Methode die Eingaben vorher in Strings konvertiert werden, um Objekte wie { $ne: "" } zu unterbinden. 
+                        </p>
+                        <p>
+                            <b>Union-Abfragen</b><br />
+                            Eine weitere Art von Angriff sind Union-Abfragen. Die Union-Abfrage ist eine bekannte SQL-Injectiontechnik, bei der Angreifer einen verwundbaren Parameter ausnutzen, um das für eine 
+                            estimmte Abfrage zurückgegebene Datenset zu ändern. Die häufigsten Verwendungen von Union-Abfragen sind das Umgehen von Authentifizierungsseiten und das Extrahieren von Daten. Hierbei kann
+                            der boolesche OR-Operatoren ausgenutzt werden, indem Ausdrücke hinzugefügt werden, die immer wahr sind (zum Beispiel eine leere Abfrage {}), was zur falschen Bewertung der gesamten Aussage
+                            führt und die illegale Datenextraktion ermöglicht. 
+                        </p>
+                        <p>
+                            Der folgende Entwicklercode: 
+                        </p>
+                        <p class="code">
+                            string query = “{ username: ‘” + post_ username + “’, password: ‘” + post_passport + ‘ “ }”
+                        </p>
+                        <p>
+                            könnte also mit einer solchen Injection:  
+                        </p>
+                        <p class="code">
+                            username=admin’, $or: [ {}, {‘a’: ‘a&password=’ }]
+                        </p>
+                        <p>
+                            in den folgenden immer wahren Ausdruck umgewandelt werden:
+                        </p>
+                        <p class="code">
+                            username: ‘admin’, $or: [ {}, { ‘a’: ‘a’, password ‘’ } ]
+                        </p>
+                        <p>
+                            Neben diesen beiden ausführlichen Beispielen soll hier noch auf folgende weitere NoSQL-Angriffsarten verwiesen werden:
+                        </p>
+                        <p>
+                            <b>JavaScript-Injections</b><br /> 
+                            Sie ermöglichen die Ausführung von JavaScript im Datenbankkontext. JavaScript ermöglicht komplizierte Transaktionen und Abfragen auf der Datenbank-Engine. Wenn nicht bereinigte 
+                            Benutzereingaben an diese Abfragen weitergegeben werden, kann dies zur Injection von beliebigem JavaScript-Code führen, was zu illegaler Datenextraktion oder -veränderung führen kann.
+                        </p>
+                        <p>
+                            <b>Piggybacked-Abfragen</b><br />
+                            Bei Piggybacked-Abfragen nutzen Angreifer Annahmen in der Interpretation von Escape-Sequenzen’ Sonderzeichen (wie Terminierungszeichen wie Carriage Return und Line Feed [CRLF]) aus, um 
+                            zusätzliche Abfragen einzufügen, die von der Datenbank ausgeführt werden sollen. Auch dies führt zur Ausführung von beliebigem Code.
+                        </p>
+                        <p>
+                            <b>Cross-Origin-Verletzungen</b><br />
+                            Ein weiteres häufiges Merkmal von NoSQL-Datenbanken ist, dass sie oft eine HTTP REST-API bereitstellen, die es Client-Anwendungen ermöglicht, Datenbankabfragen durchzuführen. Datenbanken, 
+                            die eine REST-API bereitstellen, sind unter anderem MongoDB, CouchDB und HBase. Die Bereitstellung einer REST-API ermöglicht eine einfache Integration der Datenbank in Anwendungen, da sie 
+                            die Notwendigkeit eines Vermittlungstreibers beseitigt und es jeder Programmiersprache ermöglicht, HTTP-Abfragen an die Datenbank zu senden. Dies bietet jedoch auch ein Sicherheitsrisiko, 
+                            da die REST-API die Datenbank CSRF-Angriffen aussetzt und Angreifern ermöglicht, Firewalls und andere Perimeterschutzmaßnahmen zu umgehen.
+                        </p>
+                        <p>
+                            Wenn eine Datenbank in einem sicheren Netzwerk hinter Sicherheitsmaßnahmen wie Firewalls bereitgestellt wird, müssen Angreifer entweder eine Schwachstelle finden, die ihnen den Zugang zum 
+                            sicheren Netzwerk ermöglicht, oder eine Injection durchführen, die es ihnen ermöglicht, beliebige Abfragen auszuführen. Wenn eine Datenbank jedoch eine REST-API innerhalb des gesicherten 
+                            Netzwerks bereitstellt, kann jeder mit Zugang zum gesicherten Netzwerk HTTP-Abfragen an die Datenbank senden. Wenn Angreifer in der Lage sind, ein HTML-Formular in eine Website 
+                            einzuschleusen oder Benutzer dazu zu bringen, ihre eigene Website zu besuchen, können sie durch das Absenden des Formulars beliebige Post-Aktionen auf der Datenbank ausführen.
+                        </p>
+                        <p>
+                            Um solche Angriffe zu verhindern, ist es wichtig, dass die REST-API der Datenbank sicher konfiguriert wird und dass Benutzereingaben sorgfältig validiert und bereinigt werden, bevor sie 
+                            an die Datenbank gesendet werden. Es ist auch wichtig, sicherzustellen, dass nur autorisierte Benutzer Zugriff auf die REST-API haben.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>     
         
-        <!-- Modal -->
-        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div id="footer">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#sources">Quellen</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#authors">Autoren</a>
+		</div>
+
+        <div class="modal fade" id="authors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autoren</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Dominik Bottin<br />
+                        Robin Hegenberg<br />
+                        Susanne Dittrich<br />
+                        Tobias Köhn
+                    </div>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
             </div>
         </div>
-        
-		<div id="footer">
-			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
-            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
-		</div>
+            <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Quellen</h5>
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            [1] Chamberlin, D. D. (2012). Early History of SQL. IEEE Annals of the History of Computing, 34(4), 78–82. doi:10.1109/mahc.2012.61   
+                        </p>
+                        <p>
+                            [2] Ron, A., Shulman-Peleg, A., & Puzanov, A. (2016). Analysis and Mitigation of NoSQL Injections. IEEE Security & Privacy, 14(2), 30–39. doi:10.1109/msp.2016.36  
+                        </p>
+                        <p>
+                            [3] Schwarze Consulting GmbH. (2015). Übersicht relational und/oder noSQL (I/II). Data Base Camp. Abgerufen am 27.06.2023 von 
+                            <a href="https://databasecamp.de/daten/acid">
+                                https://databasecamp.de/daten/acid
+                            </a>
+                        </p>
+                        <p>
+                            [4] Microsoft. (2022). Vergleich der relationalen und NoSQL-Daten. Microsoft Learn. Abgerufen am 27.06.2023 von 
+                            <a href="https://learn.microsoft.com/de-de/dotnet/architecture/cloud-native/relational-vs-nosql-data">
+                                https://learn.microsoft.com/de-de/dotnet/architecture/cloud-native/relational-vs-nosql-data
+                            </a>
+                        </p>
+                        <p>
+                            [5] Lang, N. (2022). Was sind die ACID-Eigenschaften? Data Base Camp. Abgerufen am 27.06.2023 von 
+                            <a href="https://databasecamp.de/daten/acid">
+                                https://databasecamp.de/daten/acid
+                            </a> 
+                        </p>
+                        <p>
+                            [6] Anderson, B., Nicholson, B. (2022). SQL vs. NoSQL Databases: What's the Difference? IBM. Abgerufen am 27.06.2023 von 
+                            <a href="https://www.ibm.com/cloud/blog/sql-vs-nosql">
+                                https://www.ibm.com/cloud/blog/sql-vs-nosql
+                            </a>
+                        </p>
+                        <p>
+                            [7] Anderson, B., Nicholson, B. (2022). What is a relational database? IBM. Abgerufen am 27.06.2023 von 
+                            <a href="https://www.ibm.com/topics/relational-databases">
+                                https://www.ibm.com/topics/relational-databases
+                            </a>
+                        </p>
+                        <p>
+                            [8] MongoDB. (n.d.). NoSQL Databankenerklärung. MongoDB. Abgerufen am 27.06.2023 von 
+                            <a href="https://www.mongodb.com/de-de/nosql-explained">
+                                https://www.mongodb.com/de-de/nosql-explained
+                            </a>
+                        </p>
+                        <p>
+                            [9] Talend. (n.d.). SQL vs. NoSQL: Wann lohnt sich welche Datenbank? Talend. Abgerufen am 27.06.2023 von 
+                            <a href="https://www.talend.com/de/resources/sql-vs-nosql/">
+                                https://www.talend.com/de/resources/sql-vs-nosql/
+                            </a>
+                        </p>
+                        <p>
+                            [10] Oracle Deutschland. (n.d.). Was ist eine relationale Datenbank? Abgerufen von 
+                            <a href="https://www.oracle.com/de/database/what-is-a-relational-database/">
+                                https://www.oracle.com/de/database/what-is-a-relational-database/
+                            </a>
+                        </p>
+                        <p>
+                            [11] Okman, L., Gal-Oz, N., Gonen, Y., Gudes, E., & Abramov, J. (2011). Security Issues in NoSQL Databases. 2011IEEE 10th International Conference on Trust, Security and Privacy in 
+                            Computing and Communications. doi:10.1109/trustcom.2011.70   
+                        </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 	</body>
 </html>

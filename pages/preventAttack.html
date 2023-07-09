@@ -4,8 +4,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.7.0.min.js"
+            integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+            crossorigin="anonymous">
+        </script>
         <link rel="stylesheet" type="text/css" href="nila.css" media="screen" />
     </head>
+
 	<body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -27,12 +33,12 @@
                 </div>
             </div>
         </nav>
+
         <div class="container">
             <div class="row justify-content-lg-center">
                 <div class="col-3">
                     <h5>Soviel Wissen muss sein!</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
                         <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
                         <li class="list-group-item"><div><a href="attackDescription.html">NoSQL-Injections</a></div></li>
                         <li class="list-group-item"><div><a href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
@@ -50,48 +56,147 @@
                         <li class="list-group-item"><div><a href="knowledgeCheck.html">Wissenscheck</a></div></li>
                     </ul>
                 </div>
+
                 <div id="mainContent" class="col-9">
-                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
-                        <h2>Angriff verhindern</h2>
-                        <div>
-                            <h4>Beispiele für MongoDB auf PHP-Server</h4>
-                            <ol>
-                                <li>Login Website ohne jegliche Schutzvorkehrungen</li>
-                                <li>Login Website mit Funktion die Search and Replace (Methode 1). Search and Replace kann in PHP mit folgender Funktion umgesetzt werden: „preg_replace("/[^a-zA-Z0-9_-]/", "", $input)“ [1]</li>
-                                <li>Login Website mit Funktion die Type Casting umsetzt (Methode 2). Type Casting kann mit dem gewünschten Datentyp vor der Variable umgesetzt werden: „(string)$input“ [2]</li>
-                                <li>Paketbeispiele für MongoDB: z.B. Mongoose [8], mongo-sanitize [7]</li>
-                                <li>Für die PHP-Umgebung im Beispiel wurde die mongo-sanitize PHP Version genutzt [14]. Diese wird über den Dependency Manager composer installiert und kann dann in PHP genutzt werden [15].</li>
-                                <li>Pentesting & Security Audits Beispiel mit Umsetzung von Mongoaudit [5][10]</li>
-                            </ol>		
-                        </div>
+                    <h2>Angriff verhindern</h2>
+                    <div>
+                        <p>
+                            In diesem Abschnitt werden einige der im Abschnitt Sicherheitsmaßnahmen vorgestellten Konzepte praktisch umgesetzt.</p>
+                        <p>
+                            Nachdem du jetzt die Konzepte der NoSQL-Injections verstanden und gesehen hast, wie man einen Angriff durchführen kann, wollen wir in diesem ersten Abschnitt die unsichere Login-Seite 
+                            sicher machen. Dafür liegt im PHP-Playground die Version „login.php“. Diese Version besitzt keine Schutzmaßnahmen der zuvor vorgestellten Schutzmaßnahmen und du hast jetzt die Möglichkeit 
+                            dein neu erlerntes Wissen einzusetzen. Versuche selbst die Methoden wie Search and Replace und Type Casting umzusetzen und danach im Zusammenhang mit Burp Suite einen Angriff durchzuführen 
+                            und die Wirksamkeit der Schutzmaßnahmen zu testen. 
+                        </p>
+                        <p>
+                            Unabhängig davon, ob deine eigene Umsetzung funktioniert hat oder nicht, findest du im folgenden Abschnitt mehrere Beispiele, wie Schutzmaßnahmen umzusetzen sind.
+                        </p>
+                        <ol>
+                            <li>
+                                <p>
+                                    Als erstes Beispiel steht eine Login Website mit den Funktionen <a href="https://www.php.net/manual/en/function.preg-replace.php">Search and Replace</a> und 
+                                    <a href="https://www.php.net/manual/en/language.types.type-juggling.php">TypeCasting</a> mit PHP zur Verfügung.<br />
+                                    Search and Replace kann in PHP mit folgender Funktion umgesetzt werden:
+                                </p>
+                                <p class="code">
+                                    preg_replace("/[^a-zA-Z0-9_-]/", "", $input)
+                                </p>
+                                <p>
+                                    Type Casting kann mit dem gewünschten Datentyp vor der Variable umgesetzt werden: 
+                                </p>
+                                <p class="code">
+                                    (string)$input
+                                </p>
+                                <p>
+                                    Diese beiden Methoden beziehen sich auf das unschädlich machen des Nutzerinputs und können ohne weitere Schutzmaßnahmen keine absolute Sicherheit vor Angriffen garantieren.
+                                </p>
+                                <p>
+                                    Bitte versuche diese Funktionen selbst umzusetzen und schaue dir anschließend erst folgendes Codebeispiel oder die Lösung im PHP-Playground unter „loginPHPFunctions.php“ an.
+                                </p>
+                                <p>
+                                    <a class="toggleAnswer" data-bs-toggle="collapse" href="#answer1" role="button" aria-expanded="false">Lösung anzeigen <i class="arrow down"></i></a>
+                                    <div class="collapse multi-collapse" id="answer1">
+                                        <div class="card card-body">
+                                            <p class="code">
+                                                #sanitizing the input with php functions<br />
+                                                function validateInput($input)<br />
+                                                {<br />
+                                                    // sanitizing input with type casting, search and Replace<br />
+                                                    return (string) preg_replace("/[^a-zA-Z0-9_-]/", "", $input);<br />
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    Die Überprüfung kann auch mit unterschiedlichen verfügbaren Packages umgesetzt werden. Paketbeispiele für MongoDB: z.B. Mongoose, mongo-sanitize. In diesem zweiten Beispiel wurde 
+                                    eine Implementierung mit mongo-sanitize umgesetzt.
+                                </p>
+                                <p>
+                                    Für die PHP-Umgebung im Beispiel wurde die mongo-sanitize PHP-Version genutzt. Diese wird über den Dependency Manager composer installiert und kann dann in PHP genutzt werden. Mit 
+                                    der Nutzung eines Packages spart man sich die selbstständige Implementierung und unterschiedliche je nach Package werden umgesetzt, um den Input zu sichern. Dafür muss das Package 
+                                    nach dem Installieren geladen werden und dann kann die Funktion genutzt werden.
+                                </p>
+                                
+                                <p>
+                                    Nachdem das Package installiert wurde und geladen ist, können die Funktionen benutzt werden.  
+                                </p>
+                                <p>
+                                    Bitte versuche wieder eigenständig das Package zu installieren und die Funktionen umzusetzen und schaue dir anschließend erst das folgende Codebeispiel oder die Lösung im 
+                                    PHP-Playground unter loginMongoSanitize.php“ an.
+                                </p>
+                                <p>
+                                    <a class="toggleAnswer" data-bs-toggle="collapse" href="#answer2" role="button" aria-expanded="false">Lösung anzeigen <i class="arrow down"></i></a>
+                                    <div class="collapse multi-collapse" id="answer2">
+                                        <div class="card card-body">
+                                            <p class="code">
+                                                #requiring mongo sanitize package<br />
+                                                require_once 'C:\xampp\vendor\autoload.php'<br /><br />
+                                                
+                                                #sanitizing the input with php functions<br />
+                                                function validateInput($input)<br />
+                                                {<br />
+                                                    // sanitizing input with type casting, search and Replace<br />
+                                                    return (string) preg_replace("/[^a-zA-Z0-9_-]/", "", $input);<br />
+                                                }
+                                            </p>
+                                            <p>
+                                                Beachte bitte, dass der Pfad je nach Installationsort von Composer angepasst werden muss.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </p>            
+                            </li>
+                            <li>
+                                Pentesting & Security Audits Beispiel mit Umsetzung von <a href="https://github.com/stampery/mongoaudit">Mongoaudit:</a><br />
+                                Nachdem die beiden zuvor genannten Beispiele umgesetzt wurden, kann man auch die Sicherheit seiner Anwendung überprüfen. Dafür gibt es unterschiedliche Möglichkeiten. In diesem Fall 
+                                nutzen wir Mongoaudit. Dieses Tool überprüft die Sicherheit der Datenbank auf bekannte Bugs und auch andere relevante Sicherheitseinstellungen. Mit diesem Tool kann man also zusätzlich
+                                zum Überprüfen des Inputs auch die serverseitige Sicherheit überprüfen/verbessern.<br />
+                                Um Mongoaudit zu nutzen, muss Python installiert sein und danach kannst du das Github Repository klonen und installieren. Dann wird man durch unterschiedliche Tests geführt und kann 
+                                abhängig vom Ergebnis Einstellungen ändern.
+                            </li>
+                        </ol>		
                     </div> 
                 </div>
             </div>
         </div>     
         
-        <!-- Modal -->
-        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div id="footer">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#authors">Autoren</a>
+		</div>
+        
+        <div class="modal fade" id="authors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autoren</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Dominik Bottin<br />
+                        Robin Hegenberg<br />
+                        Susanne Dittrich<br />
+                        Tobias Köhn
+                    </div>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
             </div>
         </div>
-        
-		<div id="footer">
-			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
-            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
-		</div>
+        <script>
+            $('.toggleAnswer').on('click', function(){
+                if($(this).attr('aria-expanded') === "true") 
+                {
+                    $($(this)).html('Lösung verbergen <i class="arrow up"></i>');
+                    
+                }
+                else 
+                {
+                    $($(this)).html('Lösung zeigen <i class="arrow down"></i>');
+                }
+            });
+        </script>
 	</body>
 </html>

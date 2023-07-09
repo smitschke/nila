@@ -6,6 +6,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="nila.css" media="screen" />
     </head>
+
 	<body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -27,12 +28,12 @@
                 </div>
             </div>
         </nav>
+
         <div class="container">
             <div class="row justify-content-lg-center">
                 <div class="col-3">
                     <h5>Soviel Wissen muss sein!</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
                         <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
                         <li class="list-group-item"><div><a href="attackDescription.html">NoSQL-Injections</a></div></li>
                         <li class="list-group-item"><div><a href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
@@ -50,9 +51,9 @@
                         <li class="list-group-item"><div><a href="knowledgeCheck.html">Wissenscheck</a></div></li>
                     </ul>
                 </div>
+
                 <div id="mainContent" class="col-9">
                     
-                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
                         <h2>Playground aufsetzen</h2>
                         <div>
                             <p>Für die Installation der PHP-Anwendung werden mehrere Tools benötigt, welche im Folgenden erläutert werden:</p>
@@ -82,10 +83,6 @@
                                     Für Hilfe zur Installation kann folgendes Video empfohlen werden: <a href="https://www.youtube.com/watch?v=WFrZB1Zr6lo">https://www.youtube.com/watch?v=WFrZB1Zr6lo</a>
                                 </li>
                                 <li>
-                                    Um Anfragen an die Datenbank zu verändern, wird das Tool BurpSuite benötigt, welches unter folgenden Link gefunden wird: <a href="https://portswigger.net/burp/communitydownload">
-                                    https://portswigger.net/burp/communitydownload</a>
-                                </li>
-                                <li>
                                     Die Testwebsite für den PHP-Server wird im Ordner xampp/htdocs abgelegt.
                                 </li>
                                 <li>
@@ -94,38 +91,36 @@
                                 </li>
                                 <li>
                                     Extra: Für den Fall, dass die PHP-Version geändert werden soll, findet sich eine Anleitung unter folgendem Link: <a href="https://julianlang.net/xampp-mehrere-php-versionen-verwenden/">
-                                    https://julianlang.net/xampp-mehrere-php-versionen-verwenden/</a>"
+                                    https://julianlang.net/xampp-mehrere-php-versionen-verwenden/</a>
                                 </li>
                             </ol>		
                         </div>
-                    </div>
+
                 </div>
             </div>
         </div>     
         
-        <!-- Modal -->
-        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div id="footer">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#authors">Autoren</a>
+		</div>
+
+        <div class="modal fade" id="authors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autoren</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Dominik Bottin<br />
+                        Robin Hegenberg<br />
+                        Susanne Dittrich<br />
+                        Tobias Köhn
+                    </div>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
             </div>
         </div>
-        
-		<div id="footer">
-			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
-            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
-		</div>
 	</body>
 </html>

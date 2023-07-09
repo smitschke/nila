@@ -28,12 +28,12 @@
                 </div>
             </div>
         </nav>
+
         <div class="container">
             <div class="row justify-content-lg-center">
                 <div class="col-3">
                     <h5>Soviel Wissen muss sein!</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><div><a href="threadAssessment.html">Die Bedrohungslage</a></div></li>
                         <li class="list-group-item"><div><a href="compareDB.html">SQL- und NoSQL-Datenbanken</a></div></li>
                         <li class="list-group-item"><div><a href="attackDescription.html">NoSQL-Injections</a></div></li>
                         <li class="list-group-item"><div><a id="active" href="securityMeasures.html">Sicherheitsmaßnahmen</a></div></li>
@@ -52,8 +52,7 @@
                     </ul>
                 </div>
                 <div id="mainContent" class="col-9">
-                    <div class="collapse show" id="welcome" data-bs-parent="#mainContent">
-                        <h2>NoSQL-Injection Angriffe verhindern</h2>
+                        <h2>Sicherheitsmaßnahmen</h2>
                         <div>
                             <p>In diesem Abschnitt werden verschiedene Methoden erläutert, wie NoSQL-Injection Angriffe verhindert werden können. Dabei werden verschiedene Methoden erläutert und spezifische Beispiele
                                für eine MongoDB Datenbank in PHP-Umgebung gegeben.</p>
@@ -70,7 +69,7 @@
                                 <li><b>Prepared Statements:</b> Benutzereingaben sollten getrennt von der Datenbankabfrage verwendet werden, um zu verhindern das die Benutzereingabe von der Datenbank als Teil der 
                                     Abfrage interpretiert wird. Mögliche Datenbankoperatoren aus der Benutzereingabe werden so nicht in der Datenbankabfrage ausgeführt [3].
                                 </li>
-                                <li><b>Least-Privilige-Prinzip:</b> Benutzeraccounts sollten die geringstmöglichen Zugriffsrechte zur Datenbank haben. Durch eine sorgfältige Verteilung von Zugriffsrechten, kann bei 
+                                <li><b>Least-Privilege-Prinzip:</b> Benutzeraccounts sollten die geringstmöglichen Zugriffsrechte zur Datenbank haben. Durch eine sorgfältige Verteilung von Zugriffsrechten, kann bei 
                                     einem erfolgreichen Angriff der mögliche Schaden reduziert werden, da Angreifer durch die niedrige Zugriffsebene auf weniger Daten Zugriff haben [3][4]. 
                                 </li>
                                 <li><b>Whitelist/Blacklist:</b> Ähnlich zur Search and Replace Methode kann auch eine Whitelist/Blacklist mit zulässigen/unzulässigen Zeichen erstellt werden, um Angriffe zu verhindern. 
@@ -101,32 +100,89 @@
                         </div>
                     </div>   
                 </div>
-            </div>
         </div>     
         
-        <!-- Modal -->
-        <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="sourcesTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sourcesTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div id="footer">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#sources">Quellen</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#authors">Autoren</a>
+		</div>
+
+        <div class="modal fade" id="authors" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Autoren</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        Dominik Bottin<br />
+                        Robin Hegenberg<br />
+                        Susanne Dittrich<br />
+                        Tobias Köhn
+                    </div>
                 </div>
-                <div class="modal-body">
-                ...
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
             </div>
         </div>
-        
-		<div id="footer">
-			<a id="source_link" href="#" data-toggle="modal" data-target="#sources">Quellen</a>
-            <a id="source_link" href="#" data-toggle="modal" data-target="#authors">Autoren</a>
-		</div>
+            <div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Quellen</h5>
+                      <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            [1] <a href="https://www.php.net/manual/en/function.preg-replace.php">https://www.php.net/manual/en/function.preg-replace.php</a> 
+                        </p>
+                        <p>
+                            [2] <a href="https://www.php.net/manual/en/language.types.type-juggling.php">https://www.php.net/manual/en/language.types.type-juggling.php </a>
+                        </p>
+                        <p>
+                            [3] <a href="https://infosecwriteups.com/nosql-injection-8732c2140576">https://infosecwriteups.com/nosql-injection-8732c2140576</a>
+                        </p>
+                        <p>
+                            [4] <a href="https://www.cyberark.com/de/what-is/least-privilege/">https://www.cyberark.com/de/what-is/least-privilege/</a>
+                        </p>
+                        <p>
+                            [5] <a href="https://geekflare.com/de/nosql-security-scan/">https://geekflare.com/de/nosql-security-scan/</a>
+                        </p>
+                        <p>
+                            [6] <a href="https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf">https://owasp.org/www-pdf-archive/GOD16-NOSQL.pdf</a>
+                        </p>
+                        <p>
+                            [7] <a href="https://www.npmjs.com/package/mongo-sanitize">https://www.npmjs.com/package/mongo-sanitize</a>
+                        </p>
+                        <p>
+                            [8] <a href="https://mongoosejs.com/">https://mongoosejs.com/</a>
+                        </p>
+                        <p>
+                            [9] <a href="https://appsecco.com/blog/hacking-apps-using-nosql-injection">https://appsecco.com/blog/hacking-apps-using-nosql-injection</a>
+                        </p>
+                        <p>
+                            [10] <a href="https://github.com/stampery/mongoaudit">https://github.com/stampery/mongoaudit</a>
+                        </p>
+                        <p>
+                            [11] Ron, Aviv & Shulman-Peleg, Alexandra & Puzanov, Anton. (2016). Analysis and Mitigation of NoSQL Injections. IEEE Security & Privacy. 14. 30-39. 10.1109/MSP.2016.36.
+                        </p>
+                        <p>
+                            [12] <a href="https://www.mongodb.com/docs/manual/administration/monitoring/">https://www.mongodb.com/docs/manual/administration/monitoring/</a>
+                        </p>
+                        <p>
+                            [13] <a href="https://sematext.com/blog/mongodb-monitoring-tools/">https://sematext.com/blog/mongodb-monitoring-tools/</a>
+                        </p>
+                        <p>
+                            [14] <a href="https://github.com/Aldin-SXR/mongo-sanitize">https://github.com/Aldin-SXR/mongo-sanitize</a>
+                        </p>
+                        <p>
+                            [15] <a href="https://getcomposer.org/download/">https://getcomposer.org/download/</a>
+                        </p>
+                    </div>
+                  </div>
+                </div>
+        </div>
 	</body>
 </html>

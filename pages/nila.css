@@ -36,14 +36,13 @@ a {
     margin-bottom: 40px;
 }
 
-/*.collapsing {
-    display: none;
-}*/
+h2 {
+    margin-bottom: 15px;
+}
 
-a[aria-expanded="true"], #active{
-    pointer-events: none;
-    cursor: default;
-    color: #343B4A !important;
+#logo {
+    max-width: 100%;
+    margin: 20px 0 30px;
 }
 
 a {
@@ -78,4 +77,44 @@ a {
 
 h2 {
     color: #495586;
+}
+
+.arrow {
+    border: solid #4EB1FC;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 2px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    margin-bottom: -2px;
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    margin-bottom: 3px;
+}
+
+#knowledgeCheck {
+    margin-left: -15px;
+}
+
+#knowledgeCheck li {
+    padding-bottom: 10px;
+}
+
+#welcome {
+    padding: 0;
+}
+
+#mainContent img {
+    margin-bottom: 20px;
+}
+
+.code {
+    font-family: 'Courier New', Arial;
 }
