@@ -1,7 +1,6 @@
 <?php
 #requiring mongo sanitize package
-require_once __DIR__ .'/vendor/autoload.php';
-
+require_once 'c:\xampp\vendor\autoload.php';
 session_start();
 
 $errmsg = "";
@@ -40,9 +39,10 @@ if (isset($_POST["login"])){
         $errmsg = "login failed!";
     }
 }
+#sainitizing input with a package
 function validateInput($input)
 {
-    // using mongo sanitize package 
+    //using mongo sanitize package 
     return mongo_sanitize($input);
 }
 ?>
