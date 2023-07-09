@@ -13,6 +13,6 @@
 - Die Python Codebeispiele liegen im Ordner **pythonPlayground** ab
 >In der Lernumgebung sind diese nicht aktiv genutzt, da dort die PHP Codebeispiele benutzt werden
 
-### Authoren
+## Authoren
 Dominik Bottin, Susanne Dittrich, Robin Hegenberg & Tobias Köhn 
 >im Rahmen des Masterstudiengangs Medieninformatik online.
