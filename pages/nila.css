@@ -45,6 +45,10 @@ h2 {
     margin: 20px 0 30px;
 }
 
+#mainContent img {
+    max-width: 100%;
+}
+
 a {
     text-decoration: none;
 }
